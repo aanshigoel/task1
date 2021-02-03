@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <input type="file" id="fileName" content= "Choose Backup File" onchange="displayFile(this)">
+        <p id="content">
+    </body>
+
+    <script type="text/javascript">
+        function displayFile( e ){
+            const fileObj = e.files[0];
+            let reader = new FileReader();
+            reader.readAsText(fileObj);
+            reader.onload = function(){
+                const fileContent= reader.result;
+                let d = fileContent.replaceAll("\n", "<br />");
+                document.getElementById("content").innerHTML = d;
+                console.log(d);
+            };
+            reader.onerror = function(){
+                console.log(reader.error);
+            };
+        }
+
+    </script>
+</html>
